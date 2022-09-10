@@ -2,12 +2,13 @@ import React from 'react';
 import './App.css';
 import websites from './Websites'
 import CyberMiner from './components/CyberMiner';
+import Kwic from './components/Kwic';
+
 import './components/styles.css'
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-
    const validWebsite = new RegExp(
     '(http|ftp|https)://[w-]+(.[w-]+)+([w.,@?^=%&amp;:/~+#-]*[w@?^=%&amp;/~+#-])?'
  );
@@ -45,8 +46,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <Kwic></Kwic>
+        {/* <CyberMiner currentWebsites={this.state.currentWebsites} increaseAccessCount={this.increaseAccessCount} setCurrentWebsites={this.setCurrentWebsites}></CyberMiner>
         <CyberMiner currentWebsites={this.state.currentWebsites} increaseAccessCount={this.increaseAccessCount} setCurrentWebsites={this.setCurrentWebsites}></CyberMiner>
-        <CyberMiner currentWebsites={this.state.currentWebsites} increaseAccessCount={this.increaseAccessCount} setCurrentWebsites={this.setCurrentWebsites}></CyberMiner>
+       */}
       </div>
     );
   }
