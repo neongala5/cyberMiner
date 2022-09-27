@@ -33,7 +33,8 @@ class Kwic extends React.Component {
             let allCircularShifts = [];
 
             userInputArray.forEach(element => {
-                let wordsInThisLine = element.split(" ");
+                let wordsInThisLine = element.trim().split(" ");
+                console.log(wordsInThisLine);
                 wordsInThisLine.forEach(line => {
                     this.arrayRotate(wordsInThisLine);
                     allCircularShifts.push(wordsInThisLine.join(' '));
@@ -63,7 +64,7 @@ class Kwic extends React.Component {
                 <input type="submit"/>
                 {this.state.circularShifts.map((answer, i) => {
                     // Return the element. Also pass key     
-                    return (<p key={answer} >{answer}</p>)
+                    return (<p key={answer+i} >{answer}</p>)
                 })}
             </form>
 
