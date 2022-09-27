@@ -35,9 +35,9 @@ class Kwic extends React.Component {
             userInputArray.forEach(element => {
                 let wordsInThisLine = element.trim().split(" ");
                 wordsInThisLine.forEach(line => {
+                    console.log(wordsInThisLine.join(' '))
                     this.arrayRotate(wordsInThisLine);
                     allCircularShifts.push(wordsInThisLine.join(' '));
-                    console.log(wordsInThisLine.join(' '))
                 });
             });
             allCircularShifts.sort(function (a, b) {
