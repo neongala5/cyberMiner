@@ -19,29 +19,36 @@ class Kwic extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-
-        console.log("User input is: \n" + this.state.userInput + "\n\n");
-        console.log("Circular shifts: \n")
-
-        let userInputArray = this.state.userInput.split("\n");
-        let allCircularShifts = [];
-
-        userInputArray.forEach(element => {
-            let wordsInThisLine = element.split(" ");
-            wordsInThisLine.forEach(line => {
-                this.arrayRotate(wordsInThisLine);
-                allCircularShifts.push(wordsInThisLine.join(' '));
-                console.log(wordsInThisLine.join(' '))
+        if (this.state.userInput.trim() === '') {
+            console.log("Only white space or nothing was entered")
+            this.setState({
+                userInput: "",
+                circularShifts: []
             });
-        });
-        allCircularShifts.sort(function (a, b) {
-            return a.toLowerCase().localeCompare(b.toLowerCase());
-        });
-        console.log("\nAlphebetized list:")
-        console.log(allCircularShifts.join('\n'));
-        this.setState({
-            circularShifts: allCircularShifts
-        });
+        } else {
+            console.log("User input is: \n" + this.state.userInput + "\n\n");
+            console.log("Circular shifts: \n")
+
+            let userInputArray = this.state.userInput.split("\n");
+            let allCircularShifts = [];
+
+            userInputArray.forEach(element => {
+                let wordsInThisLine = element.split(" ");
+                wordsInThisLine.forEach(line => {
+                    this.arrayRotate(wordsInThisLine);
+                    allCircularShifts.push(wordsInThisLine.join(' '));
+                    console.log(wordsInThisLine.join(' '))
+                });
+            });
+            allCircularShifts.sort(function (a, b) {
+                return a.toLowerCase().localeCompare(b.toLowerCase());
+            });
+            console.log("\nAlphebetized list:")
+            console.log(allCircularShifts.join('\n'));
+            this.setState({
+                circularShifts: allCircularShifts
+            });
+        }
     }
 
     arrayRotate(arr) {
