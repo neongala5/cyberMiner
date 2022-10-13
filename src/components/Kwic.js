@@ -30,7 +30,6 @@ class Kwic extends React.Component {
                 userInputArrayList: []
             });
         } else {
-
             let userInputArray = this.state.userInput.split("\n");
             let allCircularShifts = [];
             let allAlphabetized = [];
@@ -67,7 +66,7 @@ class Kwic extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit} className="App">
-                <textarea type="text" rows="3" placeholder="Enter lines of text you wish to circularly shift" name="body" value={this.state.userInput} onChange={this.onChange} />
+                <textarea maxlength="524288" type="text" rows="3" placeholder="Enter lines of text you wish to circularly shift" name="body" value={this.state.userInput} onChange={this.onChange} />
                 <input type="submit" />
                 <div className='cardContainer'>
                     <div className="card">
