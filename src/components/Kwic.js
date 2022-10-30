@@ -55,7 +55,7 @@ class Kwic extends React.Component {
             for(let i =0;i<urlArray.length;i++){
                 let wordsInThisLine = descriptionArray[i].trim().split(" ");
                 wordsInThisLine.forEach(line => {
-                    allCircularShifts.push(wordsInThisLine.join(' ') + " " + urlArray[i]);
+                    allCircularShifts.push(wordsInThisLine.join(' ') + " : " + urlArray[i]);
                     this.arrayRotate(wordsInThisLine);
                 });
 
