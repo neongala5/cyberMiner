@@ -25,6 +25,15 @@ class App extends React.Component {
     };
   }
 
+  addWebsite = (url, description) => {
+    var newWebsiteArray = this.state.currentWebsites;
+    newWebsiteArray.push({description: description, URL: url, timesAccessed: 0})
+    console.log(newWebsiteArray)
+    this.setState({
+      currentWebsites: newWebsiteArray
+    })
+  }
+
   setCurrentWebsites = (websiteUrl) => {
     var newWebsiteArray = this.state.currentWebsites.filter((website) => {
       return !website.URL.includes(websiteUrl);
@@ -46,10 +55,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Kwic></Kwic>
-        {/* <CyberMiner currentWebsites={this.state.currentWebsites} increaseAccessCount={this.increaseAccessCount} setCurrentWebsites={this.setCurrentWebsites}></CyberMiner>
+        <Kwic addWebsite={this.addWebsite}></Kwic>
         <CyberMiner currentWebsites={this.state.currentWebsites} increaseAccessCount={this.increaseAccessCount} setCurrentWebsites={this.setCurrentWebsites}></CyberMiner>
-       */}
+        <CyberMiner currentWebsites={this.state.currentWebsites} increaseAccessCount={this.increaseAccessCount} setCurrentWebsites={this.setCurrentWebsites}></CyberMiner>
       </div>
     );
   }

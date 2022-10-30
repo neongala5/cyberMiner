@@ -27,12 +27,12 @@ const websites = {
         },
         {
             "description": "yandex search",
-            "URL": "ttps://www.yandex.com/",
+            "URL": "https://www.yandex.com/",
             "timesAccessed": 0
         },
         {
             "description": "ask search",
-            "URL": "ttps://www.ask.com/",
+            "URL": "https://www.ask.com/",
             "timesAccessed": 0
         },
         {
