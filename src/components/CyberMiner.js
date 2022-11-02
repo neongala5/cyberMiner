@@ -20,6 +20,7 @@ class CyberMiner extends React.Component {
             numberPerPage: 3,
             searchType: 'AND',
             currentWebsites: websites.data,
+            allUniqueSuggestions: []
         };
     }
 
@@ -38,6 +39,32 @@ class CyberMiner extends React.Component {
         this.uniqSuggestions = [...new Set(this.tempSuggestions)];
         return this.testSuggestions;
     })
+
+    componentWillReceiveProps(currentWebsites) {
+        this.setState({ currentWebsites: currentWebsites });  
+      }
+
+    componentDidUpdate() {
+        console.log("it updated")
+        this.tempSuggestions = []
+        this.uniqSuggestions = [];
+        console.log(this.state.currentWebsites.currentWebsites)
+        this.suggestions = this.state.currentWebsites.currentWebsites.map(website => {
+            // return website.description;
+            website.description.trim().split(/ +/).map(word => {
+                this.tempSuggestions.push(word);
+                return true;
+            })
+    
+            this.uniqSuggestions = [...new Set(this.tempSuggestions)];
+            return this.testSuggestions;
+        })
+        if(this.state.allUniqueSuggestions.length!==this.uniqSuggestions.length){
+            this.setState({
+                allUniqueSuggestions: this.uniqSuggestions
+            });
+        }
+    }
 
     setSearchValue = (value) => {
         this.setState({
@@ -87,7 +114,7 @@ class CyberMiner extends React.Component {
         return (
             <div className="App">
                 <h1 style={{ color: '#154734' }}>Cyber Miner</h1>
-                <div><Autocomplete suggestions={this.uniqSuggestions} setSearchValue={this.setSearchValue}></Autocomplete></div>
+                <div><Autocomplete suggestions={this.state.allUniqueSuggestions} setSearchValue={this.setSearchValue}></Autocomplete></div>
                 <div>
                     <AlphabeticalResultsCheckBox setAttribute={this.setIsAlphabetical}></AlphabeticalResultsCheckBox>
                     <span className="Element"><FrequentlyAccessedCheckBox setAttribute={this.setIsFrequentlyAccessed}></FrequentlyAccessedCheckBox></span>
