@@ -18,13 +18,13 @@ class CyberMiner extends React.Component {
             isFrequentlyAccessed: false,
             isFiltered: false,
             numberPerPage: 3,
-            searchType: 'AND',
+            searchType: 'OR',
             currentWebsites: websites.data,
             allUniqueSuggestions: []
         };
     }
 
-    searchTypes = ['AND', 'OR', 'NOT']
+    searchTypes = ['OR', 'AND', 'NOT']
     pageOptions = [3, 5, 10]
     tempSuggestions = []
     uniqSuggestions = [];
@@ -45,10 +45,8 @@ class CyberMiner extends React.Component {
       }
 
     componentDidUpdate() {
-        console.log("it updated")
         this.tempSuggestions = []
         this.uniqSuggestions = [];
-        console.log(this.state.currentWebsites.currentWebsites)
         this.suggestions = this.state.currentWebsites.currentWebsites.map(website => {
             // return website.description;
             website.description.trim().split(/ +/).map(word => {

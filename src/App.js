@@ -28,7 +28,6 @@ class App extends React.Component {
   addWebsite = (url, description) => {
     var newWebsiteArray = this.state.currentWebsites;
     newWebsiteArray.push({description: description, URL: url, timesAccessed: 0})
-    console.log(newWebsiteArray)
     this.setState({
       currentWebsites: newWebsiteArray
     })

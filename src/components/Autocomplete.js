@@ -18,8 +18,18 @@ class Autocomplete extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.setSearchValue(this.state.userInput);
+        if (this.state.userInput.length === 0) {
+            alert("Please enter some keywords to search")
+        } else if (this.props.suggestions.length === 0) {
+            alert("Please enter some websites on the KWIC first.")
+            this.setState({
+                userInput: ''
+            });
+        } else {
+            this.props.setSearchValue(this.state.userInput);
+        }
     }
+
     static propTypes = {
         suggestions: PropTypes.instanceOf(Array)
     };
@@ -36,15 +46,15 @@ class Autocomplete extends Component {
 
         var wholeInput = e.currentTarget.value.split(" ");
         wholeInput.map(word => {
-            if(wholeInput[wholeInput.length - 1] === word){
-                
+            if (wholeInput[wholeInput.length - 1] === word) {
+
             } else {
                 mostInput = mostInput + word + ' ';
             }
             return true;
         })
         var userInput;
-        if(e.currentTarget.value[e.currentTarget.value.length - 1] === ' ') {
+        if (e.currentTarget.value[e.currentTarget.value.length - 1] === ' ') {
             userInput = ' ';
         } else {
             userInput = wholeInput[wholeInput.length - 1];
@@ -69,7 +79,7 @@ class Autocomplete extends Component {
     onClick = e => {
         this.setState({
             activeSuggestion: 0,
-            filteredSuggestions: [],
+            //filteredSuggestions: [],
             showSuggestions: false,
             userInput: this.state.mostInput + e.currentTarget.innerText
         });
@@ -157,7 +167,7 @@ class Autocomplete extends Component {
                     <em>No search terms entered yet</em>
                 </div>
             );
-        } 
+        }
 
         return (
             <Fragment>

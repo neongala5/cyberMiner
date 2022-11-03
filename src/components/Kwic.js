@@ -61,8 +61,6 @@ class Kwic extends React.Component {
 
             }
 
-            console.log(descriptionArray); 
-
             this.setState({
                 circularShifts: allCircularShifts
             });
