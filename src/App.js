@@ -9,11 +9,11 @@ import './components/styles.css'
 class App extends React.Component {
   constructor(props) {
     super(props);
-   const validWebsite = new RegExp(
-    '(http|ftp|https)://[w-]+(.[w-]+)+([w.,@?^=%&amp;:/~+#-]*[w@?^=%&amp;/~+#-])?'
- );
+    const validWebsite = new RegExp(
+      '(http|ftp|https)://[w-]+(.[w-]+)+([w.,@?^=%&amp;:/~+#-]*[w@?^=%&amp;/~+#-])?'
+    );
     var filteredWebsites = websites.data.filter(website => {
-      if(website.URL.match(validWebsite)){
+      if (website.URL.match(validWebsite)) {
         return true
       } else {
         return false;
@@ -27,7 +27,7 @@ class App extends React.Component {
 
   addWebsite = (url, description) => {
     var newWebsiteArray = this.state.currentWebsites;
-    newWebsiteArray.push({description: description, URL: url, timesAccessed: 0})
+    newWebsiteArray.push({ description: description, URL: url, timesAccessed: 0 })
     this.setState({
       currentWebsites: newWebsiteArray
     })
