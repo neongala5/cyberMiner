@@ -47,7 +47,6 @@ class Kwic extends React.Component {
                 //add website logic here
                 let description = element.substring(element.indexOf(" ")).trim();
                 let url = element.substring(0, element.indexOf(" "));
-                this.props.addWebsite(url, description)
                 urlArray.push(url)
                 descriptionArray.push(description);
             });
@@ -66,7 +65,7 @@ class Kwic extends React.Component {
                     allCircularShifts.push(noiselessWordsInThisLine.join(' ') + " : " + urlArray[i]);
                     this.arrayRotate(noiselessWordsInThisLine);
                 });
-
+                this.props.addWebsite(urlArray[i], noiselessWordsInThisLine.join(' '))
             }
 
             this.setState({
