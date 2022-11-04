@@ -13,6 +13,10 @@ class Kwic extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    validWebsite = new RegExp(
+        '(http|ftp|https)://[w-]+(.[w-]+)+([w.,@?^=%&amp;:/~+#-]*[w@?^=%&amp;/~+#-])?'
+    );
+
     onChange = e => {
         this.setState({
             userInput: e.currentTarget.value,
@@ -39,19 +43,25 @@ class Kwic extends React.Component {
                 userInputArrayList: userInputArray
             });
 
-            let descriptionArray = [] 
+            let descriptionArray = []
             let urlArray = []
+            let alertMessage = ''
 
             userInputArray.forEach(element => {
 
                 //add website logic here
                 let description = element.substring(element.indexOf(" ")).trim();
                 let url = element.substring(0, element.indexOf(" "));
-                urlArray.push(url)
-                descriptionArray.push(description);
+                if (url.match(this.validWebsite)) {
+                    urlArray.push(url)
+                    descriptionArray.push(description);
+                    alertMessage = alertMessage + "\n" + url + " added"
+                } else {
+                    alertMessage = alertMessage + "\n\n" + url + " is not a valid website and will not be added to the list of searcheable sites\n"
+                }
             });
 
-            for(let i =0;i<urlArray.length;i++){
+            for (let i = 0; i < urlArray.length; i++) {
                 let wordsInThisLine = descriptionArray[i].trim().split(" ");
                 let noiselessWordsInThisLine = [];
                 wordsInThisLine.forEach(word => {
@@ -78,7 +88,9 @@ class Kwic extends React.Component {
             this.setState({
                 alphabetizedList: allAlphabetized
             });
-        }    
+
+            alert(alertMessage)
+        }
     }
 
     arrayRotate(arr) {
