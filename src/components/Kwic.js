@@ -54,9 +54,17 @@ class Kwic extends React.Component {
 
             for(let i =0;i<urlArray.length;i++){
                 let wordsInThisLine = descriptionArray[i].trim().split(" ");
-                wordsInThisLine.forEach(line => {
-                    allCircularShifts.push(wordsInThisLine.join(' ') + " : " + urlArray[i]);
-                    this.arrayRotate(wordsInThisLine);
+                let noiselessWordsInThisLine = [];
+                wordsInThisLine.forEach(word => {
+                    if (!word.toLowerCase().localeCompare("a") || !word.toLowerCase().localeCompare("the") || !word.toLowerCase().localeCompare("of")) {
+                        //do nothing here cause we dont want the noise words
+                    } else {
+                        noiselessWordsInThisLine.push(word);
+                    }
+                })
+                noiselessWordsInThisLine.forEach(line => {
+                    allCircularShifts.push(noiselessWordsInThisLine.join(' ') + " : " + urlArray[i]);
+                    this.arrayRotate(noiselessWordsInThisLine);
                 });
 
             }
@@ -95,7 +103,7 @@ class Kwic extends React.Component {
                     </div>
                     <div className="card">
                         <div className="container">
-                            <h4><b>Circular shifted descriptions and their urls:</b></h4>
+                            <h4><b>Circular shifted descriptions and their urls and no noisewords:</b></h4>
                             {this.state.circularShifts.map((answer, i) => {
                                 return (<p key={answer + i} >{answer}</p>)
                             })}
@@ -103,7 +111,7 @@ class Kwic extends React.Component {
                     </div>
                     <div className="card">
                         <div className="container">
-                            <h4><b>Alphabetized list of descriptions together with their urls:</b></h4>
+                            <h4><b>Alphabetized list of descriptions together with their urls and no noisewords:</b></h4>
                             {this.state.alphabetizedList.map((answer, i) => {
                                 return (<p key={answer + i} >{answer}</p>)
                             })}
