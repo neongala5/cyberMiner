@@ -90,7 +90,7 @@ class Kwic extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit} className="App">
-                <textarea maxLength="524288" type="text" rows="3" placeholder="Enter lines of text you wish to circularly shift" name="body" value={this.state.userInput} onChange={this.onChange} />
+                <textarea maxLength="524288" className="inputTextArea" type="text" rows="3" placeholder="Enter lines of website urls along with their descriptions. Example: https://www.google.com/ Google search is provided by Google" name="body" value={this.state.userInput} onChange={this.onChange} />
                 <input type="submit" />
                 <div className='cardContainer'>
                     <div className="card">
@@ -103,7 +103,7 @@ class Kwic extends React.Component {
                     </div>
                     <div className="card">
                         <div className="container">
-                            <h4><b>Circular shifted descriptions and their urls and no noisewords:</b></h4>
+                            <h4><b>Circular shifted descriptions with no noisewords and their urls:</b></h4>
                             {this.state.circularShifts.map((answer, i) => {
                                 return (<p key={answer + i} >{answer}</p>)
                             })}
@@ -111,7 +111,7 @@ class Kwic extends React.Component {
                     </div>
                     <div className="card">
                         <div className="container">
-                            <h4><b>Alphabetized list of descriptions together with their urls and no noisewords:</b></h4>
+                            <h4><b>Alphabetized list of descriptions with no noisewords together with their urls:</b></h4>
                             {this.state.alphabetizedList.map((answer, i) => {
                                 return (<p key={answer + i} >{answer}</p>)
                             })}

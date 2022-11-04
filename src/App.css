@@ -14,10 +14,10 @@
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: white;
   transition: 0.3s;
-  width: 40%;
+  width: 80%;
   min-height: 100%;
   margin: 1em;
   color: black;
@@ -25,7 +25,7 @@
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .container {
@@ -35,5 +35,12 @@
 .cardContainer {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputTextArea {
+  width: 75%;
+  height: 15em;
 }
