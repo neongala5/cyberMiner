@@ -8,7 +8,8 @@ class Kwic extends React.Component {
             userInput: "",
             circularShifts: [],
             alphabetizedList: [],
-            userInputArrayList: []
+            userInputArrayList: [],
+            isChecked: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -23,8 +24,23 @@ class Kwic extends React.Component {
         });
     };
 
+    toggleCheck = () => {
+        this.setState({
+            isChecked: !this.state.isChecked,
+        });
+    }
+
     handleSubmit(event) {
         event.preventDefault();
+
+        let websitesToAdd = this.props.currentWebsites
+        let alertMessage = 'Adding new websites to current index: \n'
+
+
+        if (!this.state.isChecked) {
+            websitesToAdd = []
+            alertMessage = "New website index created! \n"
+        }
 
         if (this.state.userInput.trim() === '') {
             alert("Only white space or nothing was entered")
@@ -45,7 +61,6 @@ class Kwic extends React.Component {
 
             let descriptionArray = []
             let urlArray = []
-            let alertMessage = ''
 
             userInputArray.forEach(element => {
 
@@ -75,9 +90,10 @@ class Kwic extends React.Component {
                     allCircularShifts.push(noiselessWordsInThisLine.join(' ') + " : " + urlArray[i]);
                     this.arrayRotate(noiselessWordsInThisLine);
                 });
-                this.props.addWebsite(urlArray[i], noiselessWordsInThisLine.join(' '))
+                websitesToAdd.push({description: noiselessWordsInThisLine.join(' '), URL: urlArray[i], timesAccessed: 0})
             }
 
+            this.props.addWebsites(websitesToAdd);
             this.setState({
                 circularShifts: allCircularShifts
             });
@@ -101,6 +117,15 @@ class Kwic extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit} className="App">
+                <div className="toggleRow">
+                    <span className={this.state.isChecked ? 'notActive' : 'active'}>Create new website index</span>
+                    <label className="switch" >
+                        <input type="checkbox" defaultChecked={this.state.isChecked}
+                            onChange={this.toggleCheck} />
+                        <span className="slider round" ></span>
+                    </label>
+                    <span className={this.state.isChecked ? 'active' : 'notActive'}>Add new websites to current index</span>
+                </div>
                 <textarea maxLength="524288" className="inputTextArea" type="text" rows="3" placeholder="Enter lines of website urls along with their descriptions. Example: https://www.google.com/ Google search is provided by Google" name="body" value={this.state.userInput} onChange={this.onChange} />
                 <input type="submit" />
                 <div className='cardContainer'>

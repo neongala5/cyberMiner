@@ -3,7 +3,6 @@ import './App.css';
 import websites from './Websites'
 import CyberMiner from './components/CyberMiner';
 import Kwic from './components/Kwic';
-
 import './components/styles.css'
 
 class App extends React.Component {
@@ -25,11 +24,9 @@ class App extends React.Component {
     };
   }
 
-  addWebsite = (url, description) => {
-    var newWebsiteArray = this.state.currentWebsites;
-    newWebsiteArray.push({ description: description, URL: url, timesAccessed: 0 })
+  addWebsites = (websites) => {
     this.setState({
-      currentWebsites: newWebsiteArray
+      currentWebsites: websites
     })
   }
 
@@ -54,7 +51,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Kwic addWebsite={this.addWebsite}></Kwic>
+        <Kwic currentWebsites={this.state.currentWebsites} addWebsites={this.addWebsites}></Kwic>
         <CyberMiner currentWebsites={this.state.currentWebsites} increaseAccessCount={this.increaseAccessCount} setCurrentWebsites={this.setCurrentWebsites}></CyberMiner>
         <CyberMiner currentWebsites={this.state.currentWebsites} increaseAccessCount={this.increaseAccessCount} setCurrentWebsites={this.setCurrentWebsites}></CyberMiner>
       </div>
