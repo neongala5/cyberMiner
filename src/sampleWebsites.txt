@@ -1,0 +1,14 @@
+Here are some sample websites that can be copied into the app for testing.
+naver.com's url was purposefully made with added junk characters so that it wont pass the 
+url regex validation check. 
+
+https://www.google.com/ Google search is provided by Google
+https://www.bing.com/ Bing search is made by Microsoft   
+htt*&*ps://w**&ww.naver.com/ naver search
+https://www.duckduckgo.com/ DuckDuckGo search emphesizes privacy
+https://www.baidu.com/ baidu search
+https://www.yahoo.com/ yahoo search
+https://www.yandex.com/ yandex search
+https://www.ask.com/ ask search
+https://www.aol.com/ aol search
+https://www.seznam.cz/ seznam search
